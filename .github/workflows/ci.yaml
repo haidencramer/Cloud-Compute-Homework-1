@@ -11,11 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # [ LOAD ] Checkout Code
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # [ INSTALL ] Python Dependencies
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -26,13 +24,24 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
 
-    # [ SCAN ] Lint with Flake8 (Logic Errors Only)
     - name: Lint with flake8
       run: |
-        # E9, F63, F7, and F82 focus on critical syntax/logic errors
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-    # [ TEST ] Run Pytest
     - name: Run tests with pytest
       run: |
         pytest
+
+    - name: Generate Artifact File
+      if: always()
+      run: |
+        echo "Pipeline Report" > mystery_box.txt
+        echo "Run ID: ${{ github.run_id }}" >> mystery_box.txt
+        echo "Status: Execution complete" >> mystery_box.txt
+
+    - name: Upload Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: mystery-box-results
+        path: mystery_box.txt
