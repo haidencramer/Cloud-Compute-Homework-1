@@ -1,0 +1,11 @@
+[project]
+name = "cloud-compute-hw1"
+version = "0.1.0"
+dependencies = [
+    "pytest",
+    "flake8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = "."
