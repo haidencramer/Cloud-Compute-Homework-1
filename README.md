@@ -1,0 +1,1 @@
+[![Python CI Pipeline](https://github.com/haidencramer/Cloud-Compute-Homework-1/actions/workflows/ci.yaml/badge.svg)](https://github.com/haidencramer/Cloud-Compute-Homework-1/actions/workflows/ci.yaml)
