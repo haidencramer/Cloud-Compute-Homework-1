@@ -14,3 +14,12 @@ def is_strong(values):
         return True
     else:
         return False
+    
+def is_weak(values):
+    # in my test the value is weak if the average is < 50
+    AVG = sum(values) / len(values)
+    if AVG < 50:
+        return True
+    else:
+        return False
+    
